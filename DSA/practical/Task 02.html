@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO DO list</title>
+    <style>
+      body {
+        background: #472bd8;
+        margin: 0px;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        background: #f5f7f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 50px auto;
+        width: 400px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      .head {
+        background: #6062ca;
+        text-align: center;
+        /* margin-bottom: 20px; */
+        color: white;
+        height: 110px;
+        width: 440px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      h3 {
+        margin: 0;
+        font-size: 24px;
+      }
+      p {
+        margin: 5px 0;
+        font-size: 14px;
+      }
+      .type {
+        display: flex;
+        flex-direction: row;
+        border: grey;
+      }
+      #to-do-list {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+      }
+      #to-do-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #333;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+      }
+      #to-do-list li button {
+        background: #ff4444;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+      #add-items {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        width: 250px;
+        margin-right: 10px;
+        border: grey;
+      }
+      #btn {
+        background: #472bd8;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      #no-of-task {
+        color: white;
+        font-size: 14px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="head">
+        <h3>My Task</h3>
+        <p>Stay organized and productive</p>
+        <!-- <span id="no-of-task">""</span> -->
+      </div>
+
+      <ul id="to-do-list"></ul>
+      <div class="type">
+        <input type="text" id="add-items" placeholder="Add a new task" />
+        <button id="btn">+</button>
+        <span id="no-of-task"></span>
+      </div>
+    </div>
+  </body>
+  <script>
+    const todoElem = document.getElementById("no-of-task");
+    const listElem = document.getElementById("to-do-list");
+    const addElem = document.getElementById("add-items");
+    const addBtn = document.getElementById("btn");
+
+    let todos = [
+      "Buy groceries",
+      "Read a book",
+      "Workout",
+      "shopping",
+      "learn driving",
+    ];
+
+    function renderTodos() {
+      listElem.innerHTML = "";
+
+      todos.forEach((todoText, index) => {
+        const li = document.createElement("li");
+
+        const span = document.createElement("span");
+        span.textContent = todoText;
+
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+
+        delBtn.addEventListener("click", () => {
+          const confirmDelete = confirm(`Delete "${todoText}"?`);
+          if (confirmDelete) {
+            todos.splice(index, 1);
+            renderTodos();
+          }
+        });
+
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        listElem.appendChild(li);
+      });
+
+      todoElem.innerText = "Tasks: " + todos.length;
+    }
+
+    addBtn.addEventListener("click", () => {
+      const newTodo = addElem.value.trim();
+
+      if (newTodo !== "") {
+        todos.push(newTodo);
+        addElem.value = "";
+        renderTodos();
+      } else {
+        alert("Enter something!");
+      }
+    });
+
+    renderTodos();
+  </script>
+</html>

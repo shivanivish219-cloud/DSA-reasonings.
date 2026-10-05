@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    console.log("1. Code started");
+
+    let s = 10;
+    const w = 20;
+
+    for (let i = 0; i > 4; i++) {
+        console.log("2. i: ", i);
+    }
+
+    const sum = (a, b) => a + b;
+
+    function sumV2(a, b) {
+        return a + b
+    }
+
+    setTimeout(() => {
+        console.log("3. Set time out completed")
+    }, 3000);
+
+    console.log("4. Set Time out completed");
+
+    fetch("https://fakestoreapi.com/products").then((data) => data.json()).then((data) => {
+        console.log("5. API response: ", data)
+    }).catch((err) => {
+        console.log("5.Error: ", err)
+    })
+    console.log("6. API call done");
+
+    console.log("7. Code completed")
+</script>
+
+
+
+
+
+
+
+<script>
+    console.log("1. Code started");
+
+    let s = 10;
+    const w = 20;
+
+    for (let i = 0; i < 4; i++) {
+        console.log("2. i: ", i);
+    }
+
+    const sum = (a, b) => a + b;
+
+    function sumV2(a, b) {
+        return a + b
+    }
+
+    setTimeout(() => {
+        console.log("3. Set time out completed")
+    }, 3000);
+
+    console.log("4. Set Time out completed");
+
+    fetch("https://fakestoreapi.com/products").then((data) => data.json()).then((data) => {
+        console.log("5. API response: ", data)
+    }).catch((err) => {
+        console.log("5.Error: ", err)
+    })
+    console.log("6. API call done");
+
+    console.log("7. Code completed")
+</script>

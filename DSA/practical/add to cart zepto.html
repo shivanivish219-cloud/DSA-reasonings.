@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Cart Page</title>
+    <style></style>
+  </head>
+
+  <body>
+    <h2>🛒 Your Cart</h2>
+
+    <table id="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="total-box">Grand Total: ₹<span id="grand-total">0</span></div>
+
+    <button class="order-btn" onclick="placeOrder()">Place Order</button>
+
+    <script>
+      // 🔹 Dummy cart data (later you will connect this)
+      let cart = [
+        { name: "Bhujia", price: 50, qty: 2 },
+        { name: "Mixture", price: 70, qty: 1 },
+      ];
+
+      function renderCart() {
+        let tbody = document.querySelector("#cart-table tbody");
+        tbody.innerHTML = "";
+
+        let grandTotal = 0;
+
+        cart.forEach((item, index) => {
+          let total = item.price * item.qty;
+          grandTotal += total;
+
+          let row = document.createElement("tr");
+
+          row.innerHTML = `
+        <td>${item.name}</td>
+        <td>₹${item.price}</td>
+        <td>
+          <button onclick="changeQty(${index}, -1)">−</button>
+          ${item.qty}
+          <button onclick="changeQty(${index}, 1)">+</button>
+        </td>
+        <td>₹${total}</td>
+        <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+      `;
+
+          tbody.appendChild(row);
+        });
+
+        document.getElementById("grand-total").innerText = grandTotal;
+      }
+
+      function changeQty(index, change) {
+        cart[index].qty += change;
+
+        if (cart[index].qty <= 0) {
+          cart.splice(index, 1);
+        }
+
+        renderCart();
+      }
+
+      function removeItem(index) {
+        cart.splice(index, 1);
+        renderCart();
+      }
+
+      function placeOrder() {
+        if (cart.length === 0) {
+          alert("Cart is empty!");
+        } else {
+          alert("Order placed successfully!");
+          cart = [];
+          renderCart();
+        }
+      }
+
+      // Initial render
+      renderCart();
+    </script>
+  </body>
+</html>

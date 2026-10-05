@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #board {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+
+      #board div {
+        background: lightgray;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Kanban Board</h2>
+    <input type="text" id="task" placeholder="Enter task" />
+    <button id="btn">Add Card</button>
+
+    <div id="board"></div>
+  </body>
+  <script>
+    const boxes = [
+      "braft",
+      "In progress",
+      "Development",
+      "Testing",
+      "complete",
+      "Deployed",
+    ];
+
+    const board = document.getElementById("board");
+
+    //
+
+    function dragstartHandler(ev) {
+      ev.dataTransfer.setData("text,ev.target.id");
+    }
+
+    function dragoverHandler(ev) {
+      ev.preventDefault();
+    }
+
+    function dropHandler(ev) {
+      ev.preventDefault();
+      const data = ev.dataTransfer.getData("text");
+      const dragged = document.getElementById(data));
+    }
+  </script>
+</html>

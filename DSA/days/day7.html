@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="head">
+        <h3>My Task</h3>
+        <p>Stay organized and productive</p>
+        <span id="no-of-task">""</span>
+      </div>
+
+      <ul id="to-do-list"></ul>
+      <input type="text" id="add-items" placeholder="Add a new task" />
+      <button onclick="onclickbtn()" ="btn1">+</button>
+    </div>
+  </body>
+  <script>
+    const inputElem = document.getElementById("add-items");
+    const listElem = document.getElementById("to-do-list");
+    const countElem = document.getElementById("no-of-task");
+    const addBtn = document.querySelector("button");
+
+    let todos = [];
+
+    function updateCount() {
+      countElem.textContent = todos.length + " tasks";
+    }
+
+    function renderTodos() {
+      listElem.innerHTML = "";
+
+      todos.forEach((todo, index) => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+        ${todo}
+        <button onclick="editTodo(${index})">Edit</button>
+        <button onclick="deleteTodo(${index})">Delete</button>
+      `;
+
+        listElem.appendChild(li);
+      });
+
+      updateCount();
+    }
+
+    function addTodo() {
+      const value = inputElem.value.trim();
+
+      if (value === "") return;
+
+      todos.push(value);
+      inputElem.value = "";
+      renderTodos();
+    }
+
+    function deleteTodo(index) {
+      todos.splice(index, 1);
+      renderTodos();
+    }
+
+    function editTodo(index) {
+      const newValue = prompt("Edit task:", todos[index]);
+
+      if (newValue !== null && newValue.trim() !== "") {
+        todos[index] = newValue;
+        renderTodos();
+      }
+    }
+
+    addBtn.addEventListener("click", addTodo);
+  </script>
+</html>

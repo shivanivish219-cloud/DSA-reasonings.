@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convertcase</title>
+  </head>
+  <body>
+    <input type="text" placeholder="type your content here" />
+
+    <button id="LC-btn">Lowercase all</button>
+    <button id="UC-btn">Uppercase ALL</button>
+    <button id="SC-btn">Sentence Case</button>
+    <button id="CC-btn">Capital Case</button>
+  </body>
+
+  <!-- <script>
+    const input = document.querySelector("input");
+    const buttons = document.querySelector("button");
+
+    console.log("button", buttons);
+
+    for (let i = 0; i < input.length; i++) {
+      buttons.addEventListener("click", function () {
+        if (input === words) {
+          input.text = input.text.ToLowercase();
+        } else if (input === words) {
+          input.text = input.text.ToLowercase();
+        } else if (input === words) {
+          input.text = input.text.ToSentensecase();
+        }
+      });
+    }
+  </script>
+</html> -->
+  <script>
+    const charInput = document.getElementById("char-input");
+    const resultInput = document.getElementById("resultInput");
+    const lcBtnElem = document.getElementById("LC-btn");
+    const ucBtnElem = document.getElementById("UC-btn");
+    const scBtnElem = document.getElementById("SC-btn");
+    const ccBtnElem = document.getElementById("CC-btn");
+
+    lcBtnElem.addEventListener("click", () => {
+      // LC logic
+      resultInput.value = charInput.value.toLowerCase();
+    });
+
+    ucBtnElem.addEventListener("click", () => {
+      // UC logic
+      resultInput.value = charInput.value.toUpperCase();
+    });
+
+    scBtnElem.addEventListener("click", () => {
+      // SC logic
+    });
+    ccBtnElem.addEventListener("click", () => {
+      // CC logic
+      resultInput.value = charInput.value.to;
+    });
+  </script>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anagram Question using DOM API</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <h3>Anagram Checker</h3>
+      <input
+        type="text"
+        id="word1"
+        placeholder="Enter First word"
+      /><br /><br />
+
+      <input
+        type="text"
+        id="word2"
+        placeholder="Enter Second word"
+      /><br /><br />
+
+      <button id="btn">check</button>
+      <span class="output"></span>
+    </div>
+  </body>
+  <script>
+    function check() {
+      const word1 = document.getElementById("word1").value;
+      const word2 = document.getElementById("word2").value;
+
+      // let word1 = "";
+      // let word2 = "";
+
+      // for(let i= 0; i<word1.length; i++;  ){
+      //     for(let value = 1; value <= i; value++; ){
+      //         word1 = word2 +1
+      //     }
+      //     console.log("word1")
+      // }
+
+      if (word1.length !== word2.length) {
+        document.getElementById("output").innerText = "anagram";
+
+        return;
+      }
+
+      let used = new Array(word2.length).fill(false);
+
+      for (let i = 0; i < word1.length; i++) {
+        let found = false;
+
+        for (let j = 0; j < word2.length; j++) {
+          if (word1[i] === word2[j] && !used[j]) {
+            used[j] = true;
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          document.querySelector(".output").innerText = "Not anagram";
+          return;
+        }
+      }
+
+      document.querySelector(".output").innerText = "anagram";
+    }
+    document.getElementById("btn").addEventListener("click", check);
+  </script>
+</html>
