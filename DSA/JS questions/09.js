@@ -157,3 +157,70 @@ const findTwoNoPair = (nos, ourTarget) => {
 
 const results = findTwoNoPair(nums, target);
 console.log(results);
+
+let arr = [-2, -1, 2, 1, 3]; // arr = [-2, -1, 2, 1, 3]
+
+const register = new Set(); // register = {}
+const result = []; // result = []
+
+for (const num of arr) {
+  // num = -2     => -1       => 2    => 1    => 3
+  if (register.has(num)) {
+    //      false   => false    => true => true => false
+
+    // const first = Math.min(num, -num);      // first  = -2 (num=2) => -1 (num=1)
+    // const second = Math.max(num, -num);     // second =  2 (num=2) =>  1 (num=1)
+    const second = num < 0 ? Math.abs(num) : num * -1;
+
+    result.push([num, second]); // result = [[-2, 2]]  => [[-2, 2], [-1, 1]]
+  } else {
+    register.add(-num); // register = {2} => {2, 1} => {2, 1, -3}
+  }
+}
+console.log(result);
+
+// sum of three is 0
+
+const nums = [-1, 0, 1, 2, -1, -4, 3, 5, -2];
+const target = 0;
+const findTthreeNoPair = (nos, ourtarget) => {
+  const triplets = [];
+
+  for (let i = 0; i < nos.length; i++) {
+    for (let j = i + 1; j < nos.length; j++) {
+      for (let k = j + 1; k < nos.length; k++) {
+        if (nos[i] + nos[j] + nos[k] === ourtarget) {
+          let found = false;
+
+          for (let p = 0; p < triplets.length; p++) {
+            const a = triplets[p][0];
+            const b = triplets[p][1];
+            const c = triplets[p][2];
+
+            // I,J,K possible matches....
+            if (
+              (a === nos[i] && b === nos[j] && c === nos[k]) ||
+              (a === nos[i] && b === nos[k] && c === nos[j]) ||
+              (a === nos[j] && b === nos[i] && c === nos[k]) ||
+              (a === nos[j] && b === nos[k] && c === nos[i]) ||
+              (a === nos[k] && b === nos[i] && c === nos[j]) ||
+              (a === nos[k] && b === nos[j] && c === nos[i])
+            ) {
+              found = true;
+              break;
+            }
+          }
+
+          if (found === false) {
+            triplets[triplets.length] = [nos[i], nos[j], nos[k]];
+          }
+        }
+      }
+    }
+  }
+
+  return triplets;
+};
+
+const results = findThreeNoPair(nums, target);
+console.log(results);
