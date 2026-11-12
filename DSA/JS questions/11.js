@@ -198,3 +198,61 @@ function reverseStr(input) {
 }
 
 console.log(reverseStr("hello"));
+
+// question 12
+// Reverse a number	1234	4321
+
+function reverse(input) {
+  let num = "";
+  let str = String(input);
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    num = num + str[i];
+  }
+  return num;
+}
+
+console.log(reverse([1234]));
+
+// question 13
+// Count vowels	"javascript"	3
+
+function findVowels(string) {
+  let count = 0;
+  let preVowels = "aeiou";
+
+  for (let i = 0; i < string.length; i++) {
+    if (preVowels.includes(string[i])) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(findVowels("javascript"));
+
+// question 14
+// 10	Check palindrome	"madam"	true
+
+function palindrome(string) {
+  let result = "";
+
+  // palindrome = string.split("").reverse().join(""){
+  //   if(result === palindrome){
+  //     result = "palindrome"
+  //   }else{
+  //     "not palindrome"
+  //   }
+  // }return result;
+
+  for (let i = string.length - 1; i >= 0; i--) {
+    result = result + string[i];
+  }
+
+  if (result === string) {
+    return "palindrome";
+  } else {
+    return "not palindrome";
+  }
+}
+
+console.log(palindrome("madam"));
